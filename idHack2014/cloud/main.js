@@ -1,3 +1,6 @@
+var twilio = require('twilio');
+twilio.initialize('ACfb95b68c67b1c421fb351e537fd09421', '6d3a13db188b7d2603b8bfbf75c59f41');
+
 // Include Cloud Code module dependencies
 Parse.Cloud.define("receiveSMS", function(request, response) {
 
@@ -21,22 +24,32 @@ Parse.Cloud.define("receiveSMS", function(request, response) {
         }
     });
 
-    getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCwntQfBiEALSVVZ7vXlbOvis0qaxzCbfM&sensor=false", function() {
+ 
+    // Send an SMS message
+    twilio.sendSms({
+        to: request.params.From, 
+        from: request.params.To, 
+        body: 'Thanks for the information!'
+      }, {
+    success: function(httpResponse) { response.success("SMS sent!"); },
+    error: function(httpResponse) { response.error("Uh oh, something went wrong"); }
+    }); 
 
-        alert("Script loaded and executed.");
-        // Here you can use anything you defined in the loaded script
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({
-            'address': information[0]
-        }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                console.log("converted");
-            } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-            }
+    // getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCwntQfBiEALSVVZ7vXlbOvis0qaxzCbfM&sensor=false", function() {
 
-        });
-    });
+    //     alert("Script loaded and executed.");
+    //     // Here you can use anything you defined in the loaded script
+    //     var geocoder = new google.maps.Geocoder();
+    //     geocoder.geocode({
+    //         'address': information[0]
+    //     }, function(results, status) {
+    //         if (status == google.maps.GeocoderStatus.OK) {
+    //             console.log("converted");
+    //         } else {
+    //             alert('Geocode was not successful for the following reason: ' + status);
+    //         }
 
-    response.success();
+    //     });
+    // });
+
 });

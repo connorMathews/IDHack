@@ -8,6 +8,12 @@ var app = express();
 // Create a route that will respond to am HTTP GET request with some
 // simple TwiML instructions
 app.get('/hello', function(request, response) {
+
+    message_body = request.values.get('Body', None)
+    if message_body:
+        information = message_body.split('/')
+        console.log(information)
+
     // Create a TwiML response generator object
     var twiml = new twilio.TwimlResponse();
 

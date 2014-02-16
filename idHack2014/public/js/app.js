@@ -14,7 +14,7 @@ $(function() {
     var query = new Parse.Query(Report);
 
     var map = L.map('map', {
-        center: [51.505, -0.09],
+        center: [42.3736, -71.1106],
         zoom: 13
     });
 
@@ -22,13 +22,13 @@ $(function() {
     var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib = 'Map data © OpenStreetMap contributors';
     var osm = new L.TileLayer(osmUrl, {
-        minZoom: 8,
-        maxZoom: 12,
+        minZoom: 0,
+        maxZoom: 19,
         attribution: osmAttrib
     });
 
     // start the map in South-East England
-    map.setView(new L.LatLng(51.3, 0.7), 9);
+    map.setView(new L.LatLng(51.3, 0.7), 12);
     map.addLayer(osm);
 
     console.log("hi");
@@ -43,7 +43,7 @@ $(function() {
                 var severity = report.get("severity");
                 console.log(report);
                 var marker = L.marker([lon, lat]).addTo(map);
-                marker.bindPopup(headline + '  : ' + comments).openPopup();
+                marker.bindPopup('<b>' + headline + '  :</b> <br />' + comments).openPopup();
 
             }
 

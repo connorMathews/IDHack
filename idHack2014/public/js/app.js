@@ -43,7 +43,7 @@ $(function() {
                 var severity = report.get("severity");
                 console.log(report);
                 var marker = L.marker([lon, lat]).addTo(map);
-                marker.bindPopup(headline + '\n\n' + comments).openPopup();
+                marker.bindPopup(headline + '  : ' + comments).openPopup();
 
             }
 

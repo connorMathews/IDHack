@@ -26,8 +26,8 @@ Parse.Cloud.define("receiveSMS", function(request, response) {
         var information = request.params.Body.split("/");
 
         reports.set("phoneNum", (request.params.From).toString());
-        reports.set("len", parseFloat(information[0]));
-        reprots.set("lat", parseFloat(information[1]));
+        reports.set("lon", parseFloat(information[0]));
+        reports.set("lat", parseFloat(information[1]));
         reports.set("headline", information[2]);
         reports.set("comments", information[3]);
         reports.set("severity", parseInt(information[4]));

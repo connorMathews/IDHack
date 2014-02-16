@@ -1,5 +1,14 @@
 $(function() {
+    $("#input").keypress(function() {
+        $("#input").geocomplete();
+    });
+
+
+
     Parse.initialize("yN4ZvpxkeVf0ZgpFXb3BJKaABIl6nN8a3ue5wf4N", "1hAa5E7AIY9S93AvgICGzJ6oaUFvIwVBsomPhaAM");
+
+
+
 
     var Report = Parse.Object.extend("Reports");
     var query = new Parse.Query(Report);
@@ -34,7 +43,7 @@ $(function() {
                 var severity = report.get("severity");
                 console.log(report);
                 var marker = L.marker([lon, lat]).addTo(map);
-                marker.bindPopup(headline).openPopup();
+                marker.bindPopup(headline + '\n\n' + comments).openPopup();
 
             }
 

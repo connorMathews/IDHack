@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "_default": {
+            "link": "idhack2014"
+        }, 
+        "idhack2014": {
+            "applicationId": "yN4ZvpxkeVf0ZgpFXb3BJKaABIl6nN8a3ue5wf4N", 
+            "masterKey": "1PdtL3uOtxNSfiHQPsJsFoxA5FyTeCfjhMoN9Fb6"
+        }
+    }
+}

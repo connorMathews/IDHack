@@ -4,7 +4,9 @@ twilio.initialize('ACfb95b68c67b1c421fb351e537fd09421', '6d3a13db188b7d2603b8bfb
 // Include Cloud Code module dependencies
 Parse.Cloud.define("receiveSMS", function(request, response) {
 
-    if (request.params.Body == "report") {
+
+    if (request.params.Body.toLowerCase() == "report") {
+
         // Send an SMS message
         twilio.sendSMS({
             to: request.params.From,
@@ -24,8 +26,8 @@ Parse.Cloud.define("receiveSMS", function(request, response) {
         var information = request.params.Body.split("/");
 
         reports.set("phoneNum", (request.params.From).toString());
-        reports.set("len", information[0]);
-        reports.set("lat", information[1]);
+        reports.set("len", parseFloat(information[0]));
+        reprots.set("lat", parseFloat(information[1]));
         reports.set("headline", information[2]);
         reports.set("comments", information[3]);
         reports.set("severity", parseInt(information[4]));

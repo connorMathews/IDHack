@@ -37,7 +37,7 @@ Parse.Cloud.define("receiveSMS", function(request, response) {
                 alert('New object created with objectId: ' + reports.id);
             },
             error: function(reports, error) {
-                alert('Failed to create new object, with error code: ' + error.description);
+                alert('Failed to create new object, with error code: ' + error);
             }
         });
 
